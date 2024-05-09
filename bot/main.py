@@ -4,8 +4,10 @@ from secrets import randbelow
 from typing import Optional
 
 import discord
+from decouple import config
 from discord.ext import commands
 from dotenv import load_dotenv
+from help import Help
 from settings import COLOR_YELLOW
 from unip import Unip
 
@@ -14,18 +16,36 @@ load_dotenv()
 intents = discord.Intents.default()
 intents.message_content = True
 
+DEBUG = config('DEBUG', default=False, cast=bool)
+
+if DEBUG:
+    BOT_ID = os.getenv('BOT_ID_DEV')
+    TOKEN = os.getenv('TOKEN_DEV')
+    PREFIX = os.getenv('PREFIX_DEV')
+else:
+    BOT_ID = os.getenv('BOT_ID')
+    TOKEN = os.getenv('TOKEN')
+    PREFIX = os.getenv('PREFIX')
 
 bot = commands.Bot(
-    command_prefix='?',
+    command_prefix=PREFIX,
     intents=intents,
     activity=discord.Game(name='AVA'),  # Define o que o bot está "jogando"
-    aplication_id=os.getenv('BOT_ID'),
+    aplication_id=os.getenv(BOT_ID),
 )
+
+bot.help_command = Help()
 
 
 @bot.event
 async def on_ready():
-    print(f'Logged in as {bot.user} (ID: {bot.user.id})')
+    if DEBUG:
+        mode = 'DEVELOPMENT MODE'
+    else:
+        mode = 'PRODUCTION MODE'
+    print(
+        f'Logged in as {bot.user} (ID: {bot.user.id}) --> {mode} (Prefix: {PREFIX})'
+    )
     print('------')
 
 
@@ -41,7 +61,7 @@ async def on_member_join(member):
         await guild.system_channel.send(embed)
 
 
-@bot.command()
+@bot.command(aliases=['ola'])
 async def hello(ctx, name: Optional[str]):
     """Diz olá para o usuário."""
     if name is not None:
@@ -63,7 +83,7 @@ async def moeda(message):
 async def main():
     async with bot:
         await bot.add_cog(Unip(bot))
-        await bot.start(os.getenv('TOKEN'))
+        await bot.start(TOKEN)
 
 
 asyncio.run(main())
