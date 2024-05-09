@@ -70,8 +70,8 @@ async def hello(ctx, name: Optional[str]):
         await ctx.send('Hello World!')
 
 
-@bot.command()
-async def moeda(message):
+@bot.command(name='coin', aliases=['moeda'])
+async def coin(message):
     """Joga uma moeda para o alto e retorna cara ou coroa."""
     choince = randbelow(2)
     if choince == 0:

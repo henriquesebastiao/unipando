@@ -45,4 +45,4 @@ lint = "task ruff && task blue && task isort"
 format = 'blue .  && isort .'
 ready = "task lint && task radon && task bandit"
 export-requirements = "rm requirements.txt && poetry export -f requirements.txt --output requirements.txt --without-hashes --without dev"
-
+run="python ./bot/main.py"
