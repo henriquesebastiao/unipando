@@ -7,8 +7,7 @@ import discord
 from discord.ext import commands
 from dotenv import load_dotenv
 from settings import COLOR_YELLOW
-
-from bot.unip import Unip
+from unip import Unip
 
 load_dotenv()
 

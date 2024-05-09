@@ -1,0 +1,12 @@
+version: '3.9'
+
+services:
+  unipando-bot:
+    container_name: unipando-bot
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./bot:/bot
+    env_file:
+      - .env
