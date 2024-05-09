@@ -1,0 +1,47 @@
+[tool.poetry]
+name = "Unipando"
+version = "0.1.0"
+description = "Um bot para Discord para auxiliar estudantes do curso de Ciência da Computação da UNIP."
+authors = ["Henrique Sebastião <contato@henriquesebastiao.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+python-dotenv = "^1.0.1"
+python-decouple = "^3.8"
+discord = "^2.3.2"
+
+
+[tool.poetry.group.dev.dependencies]
+taskipy = "^1.12.2"
+blue = "^0.9.1"
+ruff = "^0.4.3"
+isort = "^5.13.2"
+bandit = "^1.7.8"
+radon = "^6.0.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.isort]
+profile = "black"
+line_length = 79
+
+[tool.ruff]
+line-length = 79
+indent-width = 4
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F403", "F401"]
+
+[tool.taskipy.tasks]
+ruff = "ruff check ."
+blue = "blue --check . --diff"
+isort = "isort --check --diff ."
+radon = "radon cc ./bot -a -na"
+bandit = "bandit -r ./bot"
+lint = "task ruff && task blue && task isort"
+format = 'blue .  && isort .'
+ready = "task lint && task radon && task bandit"
+
