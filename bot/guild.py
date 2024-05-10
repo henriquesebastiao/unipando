@@ -1,14 +1,29 @@
+import os
 from datetime import date, datetime, timedelta
 
 import discord
+import pytz
 from discord.ext import commands
+from dotenv import load_dotenv
+from settings import DEBUG
+
+load_dotenv()
 
 
 async def create_class_events(bot: commands.Bot):
     """Cria eventos de estudo para a guilda Ciência do Desespero."""
-    guild = bot.get_guild(945423070829617262)  # Ciência do Desespero
-    channel_event = guild.get_channel(949464732388167680)  # Estudos
-    channel_message = guild.get_channel(949092657269993513)  # bot
+    if DEBUG:
+        guild = bot.get_guild(int(os.getenv('GUILD_DEV')))
+        channel_event = guild.get_channel(int(os.getenv('CHANNEL_EVENT_DEV')))
+        channel_message = guild.get_channel(int(os.getenv('CHANNEL_BOT_DEV')))
+    else:
+        guild = bot.get_guild(int(os.getenv('GUILD')))  # Ciência do Desespero
+        channel_event = guild.get_channel(
+            int(os.getenv('CHANNEL_EVENT'))
+        )  # Estudos
+        channel_message = guild.get_channel(
+            int(os.getenv('CHANNEL_BOT'))
+        )  # bot
 
     subjects = [
         {
@@ -39,16 +54,20 @@ async def create_class_events(bot: commands.Bot):
                 await guild.create_scheduled_event(
                     name=event['materia'],
                     start_time=datetime(
-                        event['date'].year,
-                        event['date'].month,
-                        event['date'].day,
-                        20,
-                        0,
-                    ).astimezone(),
+                        year=event['date'].year,
+                        month=event['date'].month,
+                        day=event['date'].day,
+                        hour=21,
+                        minute=0,
+                        second=0,
+                        microsecond=0,
+                        tzinfo=pytz.timezone('America/Sao_Paulo'),
+                    ),
                     description=event['description'],
                     channel=channel_event,
                     privacy_level=discord.PrivacyLevel.guild_only,
                 )
                 await channel_message.send(
-                    f'Evento {event["materia"]} criado para {event["date"].strftime("%d/%m/%y")} as 20:00'
+                    f'Evento {event["materia"]} criado para {event["date"].strftime("%d/%m/%y")} '
+                    f'as 21h (Horário de Brasília).'
                 )

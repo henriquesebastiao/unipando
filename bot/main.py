@@ -1,25 +1,25 @@
 import asyncio
 import os
+from datetime import datetime
 from secrets import randbelow
 from typing import Optional
 
 import discord
+import pytz
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
-from decouple import config
 from discord.ext import commands
 from dotenv import load_dotenv
 from guild import create_class_events
 from help import Help
-from settings import COLOR_YELLOW
+from settings import COLOR_YELLOW, DEBUG
+from system import System
 from unip import Unip
 
 load_dotenv()
 
 intents = discord.Intents.default()
 intents.message_content = True
-
-DEBUG = config('DEBUG', default=False, cast=bool)
 
 if DEBUG:
     BOT_ID = os.getenv('BOT_ID_DEV')
@@ -50,14 +50,19 @@ async def on_ready():
     print(
         f'Logged in as {bot.user} (ID: {bot.user.id}) --> {mode} (Prefix: {PREFIX})'
     )
-    print('------')
+    print(
+        f'{datetime.now(pytz.timezone("America/Sao_Paulo"))} (America/Sao_Paulo)'
+    )
+    time_now = f'{datetime.now().isoformat()} (NOW)'
+    print(time_now)
+    print('-' * len(time_now))
 
-    # Verifica todos os dias às 8h30min se existem eventos de aula para criar no servidor Ciência do Desespero
+    # Verifica diariamente se existem eventos de aula para criar no servidor Ciência do Desespero
     scheduler.add_job(
         name='Cria eventos de estudo no servidor Ciência do Desespero',
         func=create_class_events,
         args=[bot],
-        trigger=CronTrigger(hour=8, minute=30, timezone='America/Sao_Paulo'),
+        trigger=CronTrigger(hour=15, minute=10, timezone='America/Sao_Paulo'),
     )
 
     scheduler.start()
@@ -97,6 +102,7 @@ async def coin(message):
 async def main():
     async with bot:
         await bot.add_cog(Unip(bot))
+        await bot.add_cog(System(bot))
         await bot.start(TOKEN)
 
 

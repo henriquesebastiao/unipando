@@ -11,6 +11,8 @@ python-dotenv = "^1.0.1"
 python-decouple = "^3.8"
 discord = "^2.3.2"
 apscheduler = "^3.10.4"
+pytz = "^2024.1"
+psutil = "^5.9.8"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -44,6 +46,6 @@ radon = "radon cc ./bot -a -na"
 bandit = "bandit -r ./bot"
 lint = "task ruff && task blue && task isort"
 format = 'blue .  && isort .'
-ready = "task lint && task radon && task bandit"
+ready = "task lint && task radon && task bandit && task export-requirements"
 export-requirements = "rm requirements.txt && poetry export -f requirements.txt --output requirements.txt --without-hashes --without dev"
 run="python ./bot/main.py"

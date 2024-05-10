@@ -8,5 +8,6 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./bot:/bot
+      - ./requirements.txt:/requirements.txt
     env_file:
       - .env
