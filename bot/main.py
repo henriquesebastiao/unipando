@@ -4,9 +4,12 @@ from secrets import randbelow
 from typing import Optional
 
 import discord
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
+from apscheduler.triggers.cron import CronTrigger
 from decouple import config
 from discord.ext import commands
 from dotenv import load_dotenv
+from guild import create_class_events
 from help import Help
 from settings import COLOR_YELLOW
 from unip import Unip
@@ -35,6 +38,7 @@ bot = commands.Bot(
 )
 
 bot.help_command = Help()
+scheduler = AsyncIOScheduler()
 
 
 @bot.event
@@ -47,6 +51,16 @@ async def on_ready():
         f'Logged in as {bot.user} (ID: {bot.user.id}) --> {mode} (Prefix: {PREFIX})'
     )
     print('------')
+
+    # Verifica todos os dias às 8h30min se existem eventos de aula para criar no servidor Ciência do Desespero
+    scheduler.add_job(
+        name='Cria eventos de estudo no servidor Ciência do Desespero',
+        func=create_class_events,
+        args=[bot],
+        trigger=CronTrigger(hour=8, minute=30, timezone='America/Sao_Paulo'),
+    )
+
+    scheduler.start()
 
 
 @bot.event
