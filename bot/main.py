@@ -12,23 +12,14 @@ from discord.ext import commands
 from dotenv import load_dotenv
 from guild import create_class_events
 from help import Help
-from settings import COLOR_YELLOW, DEBUG
+from settings import BOT_ID, COLOR_YELLOW, MODE, PREFIX, TOKEN
 from system import System
 from unip import Unip
 
 load_dotenv()
 
-intents = discord.Intents.default()
+intents = discord.Intents.all()
 intents.message_content = True
-
-if DEBUG:
-    BOT_ID = os.getenv('BOT_ID_DEV')
-    TOKEN = os.getenv('TOKEN_DEV')
-    PREFIX = os.getenv('PREFIX_DEV')
-else:
-    BOT_ID = os.getenv('BOT_ID')
-    TOKEN = os.getenv('TOKEN')
-    PREFIX = os.getenv('PREFIX')
 
 bot = commands.Bot(
     command_prefix=PREFIX,
@@ -43,12 +34,8 @@ scheduler = AsyncIOScheduler()
 
 @bot.event
 async def on_ready():
-    if DEBUG:
-        mode = 'DEVELOPMENT MODE'
-    else:
-        mode = 'PRODUCTION MODE'
     print(
-        f'Logged in as {bot.user} (ID: {bot.user.id}) --> {mode} (Prefix: {PREFIX})'
+        f'Logged in as {bot.user} (ID: {bot.user.id}) --> {MODE} (Prefix: {PREFIX})'
     )
     print(
         f'{datetime.now(pytz.timezone("America/Sao_Paulo"))} (America/Sao_Paulo)'

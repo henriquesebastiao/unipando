@@ -181,3 +181,4 @@ pyrightconfig.json
 poetry.lock
 .idea/
 .vscode/
+bot/tests.py

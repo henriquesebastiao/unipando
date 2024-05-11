@@ -1,29 +1,19 @@
-import os
 from datetime import date, datetime, timedelta
 
 import discord
 import pytz
 from discord.ext import commands
 from dotenv import load_dotenv
-from settings import DEBUG
+from settings import CHANNEL_EVENT_ID, CHANNEL_MESSAGE_ID, GUILD_ID
 
 load_dotenv()
 
 
 async def create_class_events(bot: commands.Bot):
     """Cria eventos de estudo para a guilda Ciência do Desespero."""
-    if DEBUG:
-        guild = bot.get_guild(int(os.getenv('GUILD_DEV')))
-        channel_event = guild.get_channel(int(os.getenv('CHANNEL_EVENT_DEV')))
-        channel_message = guild.get_channel(int(os.getenv('CHANNEL_BOT_DEV')))
-    else:
-        guild = bot.get_guild(int(os.getenv('GUILD')))  # Ciência do Desespero
-        channel_event = guild.get_channel(
-            int(os.getenv('CHANNEL_EVENT'))
-        )  # Estudos
-        channel_message = guild.get_channel(
-            int(os.getenv('CHANNEL_BOT'))
-        )  # bot
+    guild = bot.get_guild(GUILD_ID)
+    channel_event = guild.get_channel(CHANNEL_EVENT_ID)
+    channel_message = guild.get_channel(CHANNEL_MESSAGE_ID)
 
     subjects = [
         {
