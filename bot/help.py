@@ -13,26 +13,35 @@ class Help(discord.ext.commands.HelpCommand):
             'name': 'help',
             'aliases': [
                 'ajuda',
-                'helps',
             ],
             'cooldown': commands.CooldownMapping.from_cooldown(
                 2, 5.0, commands.BucketType.user
             ),
+            'help': 'Mostra a lista de comandos disponíveis.',
         }
 
     async def send_bot_help(self, mapping):
         """Envia a mensagem de ajuda para o usuário."""
-        embed = discord.Embed(title='Help', color=COLOR_YELLOW)
+        embed = discord.Embed(title='Comandos disponíveis', color=COLOR_YELLOW)
         for cog, commandss in mapping.items():
             filtered = await self.filter_commands(commandss, sort=True)
             command_signatures = [
                 self.get_command_signature(c) for c in filtered
             ]
-            if command_signatures:
-                cog_name = getattr(cog, 'qualified_name', 'No Category')
+            command_descriptions = [c.short_doc for c in filtered]
+
+            values = [
+                f'`{signature}` - {description}'
+                for signature, description in zip(
+                    command_signatures, command_descriptions
+                )
+            ]
+
+            if values:
+                cog_name = getattr(cog, 'qualified_name', 'Sem categoria')
                 embed.add_field(
                     name=cog_name,
-                    value='\n'.join(command_signatures),
+                    value='\n'.join(values),
                     inline=False,
                 )
 

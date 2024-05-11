@@ -35,7 +35,7 @@ class System(commands.Cog):
         else:
             await ctx.send(self.not_allowed_message)
 
-    @commands.command(help='Mostra a hora atual do sistema.', aliases=['h'])
+    @commands.command(help='Mostra a hora atual do sistema.', aliases=['hora'])
     async def clock(self, ctx):
         if ctx.author.id == 845237609936322591:
             embed = discord.Embed(

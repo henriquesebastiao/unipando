@@ -1,4 +1,7 @@
+<img src="img/logo-repository.png" width="100">
+
 # Unipando Bot
+
 
 [![CI](https://github.com/henriquesebastiao/unipando/actions/workflows/ci.yml/badge.svg)](https://github.com/henriquesebastiao/unipando/actions/workflows/ci.yml)
 
@@ -14,9 +17,11 @@ Para adicionar o Unipando ao seu servidor no Discord, siga estas etapas:
 ## Comandos
 
 - `?hello` - Hello World!
-- `?moeda` - Joga uma moeda para cima.
-- `?md <nota-prova> <nota-ava>` - Calcula a média da disciplina `((9 * prova) * ava) / 10`.
-- `?mf <nota-md> <nota-exame>` - Calcula a média final da disciplina `(md + exame) / 2`.
+- `?coin` - Joga uma moeda para cima.
+- `?md <prova> <ava>` - Calcula a média da disciplina `((9 * prova) * ava) / 10`.
+- `?mf <media_disciplina> <exame>` - Calcula a média final da disciplina `(md + exame) / 2`.
+-  `?status` - Mostra informações sobre o sistema.
+- `?clock` - Mostra o horário atual.
 
 ## Contribuindo
 
