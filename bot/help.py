@@ -1,5 +1,7 @@
 import discord
+from discord import ButtonStyle
 from discord.ext import commands
+from discord.ui import Button, View
 from settings import COLOR_YELLOW
 
 
@@ -45,8 +47,26 @@ class Help(discord.ext.commands.HelpCommand):
                     inline=False,
                 )
 
+        view = View()
+        view.add_item(
+            Button(
+                label='Repositório',
+                emoji='🗃️',
+                style=ButtonStyle.link,
+                url='https://github.com/henriquesebastiao/unipando',
+            )
+        )
+        view.add_item(
+            Button(
+                label='Reporte bugs',
+                emoji='💥',
+                style=ButtonStyle.link,
+                url='https://github.com/henriquesebastiao/unipando/issues',
+            )
+        )
+
         channel = self.get_destination()
-        await channel.send(embed=embed)
+        await channel.send(embed=embed, view=view)
 
     async def send_command_help(self, command):
         """Envia a mensagem de ajuda para um comando específico."""

@@ -1,6 +1,8 @@
 from typing import Union
 
+import discord
 from discord.ext import commands
+from settings import COLOR_YELLOW
 
 
 class Unip(commands.Cog):
@@ -72,3 +74,24 @@ class Unip(commands.Cog):
                     f'\n{ctx.author.mention}, você realmente está REPROVADO 🥲'
                 )
             await ctx.send(message)
+
+    @commands.command(help='Links úteis da faculdade.')
+    async def links(self, ctx):
+        embed = discord.Embed(
+            title='Links',
+            description='Endereços eletrônicos úteis da faculdade',
+            color=COLOR_YELLOW,
+        )
+        embed.add_field(
+            name='Principais',
+            value='AVA: https://ava.ead.unip.br/\n'
+            'Central: https://unip.br/aluno/central/sistemas\n'
+            'Secretaria: https://gfa.unip.br/aluno/',
+            inline=False,
+        )
+        embed.add_field(
+            name='Materiais',
+            value='Repositório: https://github.com/henriquesebastiao/cc-unip',
+            inline=False,
+        )
+        await ctx.send(embed=embed)

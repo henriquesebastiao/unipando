@@ -10,7 +10,7 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
 from discord.ext import commands
 from dotenv import load_dotenv
-from guild import create_class_events
+from guild import create_class_events, stick_notes
 from help import Help
 from settings import BOT_ID, COLOR_YELLOW, MODE, PREFIX, TOKEN
 from system import System
@@ -44,12 +44,18 @@ async def on_ready():
     print(time_now)
     print('-' * len(time_now))
 
-    # Verifica diariamente se existem eventos de aula para criar no servidor Ciência do Desespero
+    # Verifica as pendências no servidor Ciência do Desespero
     scheduler.add_job(
-        name='Cria eventos de estudo no servidor Ciência do Desespero',
+        name='Cria eventos de estudo no servidor Ciência do Desespero (alunos de Ciência da Computação).',
         func=create_class_events,
         args=[bot],
         trigger=CronTrigger(hour=15, minute=10, timezone='America/Sao_Paulo'),
+    )
+    scheduler.add_job(
+        name='Envia lembretes de datas importantes no servidor Ciência do Desespero (alunos de Ciência da Computação).',
+        func=stick_notes,
+        args=[bot],
+        trigger=CronTrigger(hour=8, minute=30, timezone='America/Sao_Paulo'),
     )
 
     scheduler.start()

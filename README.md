@@ -20,6 +20,7 @@ Para adicionar o Unipando ao seu servidor no Discord, siga estas etapas:
 - `?coin` - Joga uma moeda para cima.
 - `?md <prova> <ava>` - Calcula a média da disciplina `((9 * prova) * ava) / 10`.
 - `?mf <media_disciplina> <exame>` - Calcula a média final da disciplina `(md + exame) / 2`.
+- `?links` - Mostra links úteis da faculdade.
 -  `?status` - Mostra informações sobre o sistema.
 - `?clock` - Mostra o horário atual.
 

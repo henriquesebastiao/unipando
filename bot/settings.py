@@ -22,6 +22,7 @@ if DEBUG:
     GUILD_ID = os.getenv('GUILD_DEV')
     CHANNEL_EVENT_ID = os.getenv('CHANNEL_EVENT_DEV')
     CHANNEL_MESSAGE_ID = os.getenv('CHANNEL_BOT_DEV')
+    CHANNEL_STICK_NOTES_ID = os.getenv('CHANNEL_STICK_NOTES_DEV')
 else:
     BOT_ID = os.getenv('BOT_ID')
     TOKEN = os.getenv('TOKEN')
@@ -31,3 +32,4 @@ else:
     GUILD_ID = int(os.getenv('GUILD'))
     CHANNEL_EVENT_ID = int(os.getenv('CHANNEL_EVENT'))
     CHANNEL_MESSAGE_ID = int(os.getenv('CHANNEL_BOT'))
+    CHANNEL_STICK_NOTES_ID = int(os.getenv('CHANNEL_STICK_NOTES'))
