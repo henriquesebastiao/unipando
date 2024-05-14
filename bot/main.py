@@ -77,7 +77,7 @@ async def on_member_join(member):
 async def hello(ctx, name: Optional[str]):
     """Diz olá para o usuário."""
     if name is not None:
-        await ctx.send(f'Hello, {name}!')
+        await ctx.send(f'Olá, {name}!')
     else:
         await ctx.send('Hello World!')
 
