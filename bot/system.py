@@ -17,32 +17,26 @@ class System(commands.Cog):
 
     @commands.command(help='Mostra status do bot.', aliases=['s'])
     async def status(self, ctx):
-        if ctx.author.id == 845237609936322591:
-            system = {
-                'CPU': f'{psutil.cpu_percent()}%',
-                'RAM': f'{psutil.virtual_memory().percent}%',
-                'Disco': f'{psutil.disk_usage("/").percent}%',
-                'CPU Freq.': f'{psutil.cpu_freq().current:.2f}Mhz',
-                'Total RAM': f'{psutil.virtual_memory().total / 1024 / 1024 / 1024:.2f}GB',
-                'Network': f'⬇️ {psutil.net_io_counters().bytes_sent / 1024 / 1024:.2f}MB |'
-                f' ⬇️ {psutil.net_io_counters().bytes_recv / 1024 / 1024:.2f}MB',
-            }
-            embed = discord.Embed(title='System', color=COLOR_BLUE)
-            for key, value in system.items():
-                embed.add_field(name=key, value=value, inline=True)
+        system = {
+            'CPU': f'{psutil.cpu_percent()}%',
+            'RAM': f'{psutil.virtual_memory().percent}%',
+            'Disco': f'{psutil.disk_usage("/").percent}%',
+            'CPU Freq.': f'{psutil.cpu_freq().current:.2f}Mhz',
+            'Total RAM': f'{psutil.virtual_memory().total / 1024 / 1024 / 1024:.2f}GB',
+            'Network': f'⬇️ {psutil.net_io_counters().bytes_sent / 1024 / 1024:.2f}MB |'
+            f' ⬇️ {psutil.net_io_counters().bytes_recv / 1024 / 1024:.2f}MB',
+        }
+        embed = discord.Embed(title='System', color=COLOR_BLUE)
+        for key, value in system.items():
+            embed.add_field(name=key, value=value, inline=True)
 
-            await ctx.send(embed=embed)
-        else:
-            await ctx.send(self.not_allowed_message)
+        await ctx.send(embed=embed)
 
     @commands.command(help='Mostra a hora atual do sistema.', aliases=['hora'])
     async def clock(self, ctx):
-        if ctx.author.id == 845237609936322591:
-            embed = discord.Embed(
-                title='Hora',
-                description=f'{datetime.now().isoformat()}',
-                color=COLOR_BLUE,
-            )
-            await ctx.send(embed=embed)
-        else:
-            await ctx.send(self.not_allowed_message)
+        embed = discord.Embed(
+            title='Hora',
+            description=f'{datetime.now().isoformat()}',
+            color=COLOR_BLUE,
+        )
+        await ctx.send(embed=embed)
