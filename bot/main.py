@@ -12,7 +12,7 @@ from discord.ext import commands
 from dotenv import load_dotenv
 from guild import create_class_events, stick_notes
 from help import Help
-from settings import BOT_ID, COLOR_YELLOW, MODE, PREFIX, TOKEN
+from settings import BOT_ID, COLOR_YELLOW, DEBUG, MODE, PREFIX, TOKEN
 from system import System
 from unip import Unip
 
@@ -70,7 +70,7 @@ async def on_member_join(member):
             description=f'Seja bem vindo {member.mention}, espero que você se divirta!',
             color=COLOR_YELLOW,
         )
-        await guild.system_channel.send(embed)
+        await guild.system_channel.send(embed=embed)
 
 
 @bot.command(aliases=['ola'])
@@ -90,6 +90,15 @@ async def coin(message):
         await message.channel.send('Cara 😄')
     else:
         await message.channel.send('Coroa 👑')
+
+
+# This is a debug command, used to test the bot.
+if DEBUG:
+
+    @bot.command(name='debug', aliases=['d'])
+    async def debug(ctx):
+        """Comando de debug."""
+        pass
 
 
 async def main():
