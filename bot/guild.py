@@ -21,21 +21,21 @@ async def create_class_events(bot: commands.Bot):
     channel_message = guild.get_channel(CHANNEL_MESSAGE_ID)
 
     subjects = [
-        {
-            'materia': 'Sistemas Operacionais Und.3',
-            'date': date(2024, 5, 13),
-            'description': 'Operação de Sistemas Operacionais.',
-        },
-        {
-            'materia': 'Teoria dos Grafos Und.1',
-            'date': date(2024, 5, 20),
-            'description': 'Grafos em árvores, Caminho de Euler, caminho de Hamilton e Algoritmo de percurso.',
-        },
-        {
-            'materia': 'Teoria dos Grafos Und.2',
-            'date': date(2024, 5, 27),
-            'description': 'Árvore mínima, Caminhos mínimos, Problema das quatro cores e Fluxos em Grafos.',
-        },
+        # {
+        #     'materia': 'Sistemas Operacionais Und.3',
+        #     'date': date(2024, 5, 13),
+        #     'description': 'Operação de Sistemas Operacionais.',
+        # },
+        # {
+        #     'materia': 'Teoria dos Grafos Und.1',
+        #     'date': date(2024, 5, 20),
+        #     'description': 'Grafos em árvores, Caminho de Euler, caminho de Hamilton e Algoritmo de percurso.',
+        # },
+        # {
+        #     'materia': 'Teoria dos Grafos Und.2',
+        #     'date': date(2024, 5, 27),
+        #     'description': 'Árvore mínima, Caminhos mínimos, Problema das quatro cores e Fluxos em Grafos.',
+        # },
     ]
 
     existing_events = guild.scheduled_events

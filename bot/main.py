@@ -1,6 +1,7 @@
 import asyncio
 import os
 from datetime import datetime
+from random import randint
 from secrets import randbelow
 from typing import Optional
 
@@ -64,10 +65,18 @@ async def on_ready():
 @bot.event
 async def on_member_join(member):
     guild = member.guild
+
+    greetings = [
+        'espero que você se divirta!',
+        'espero que você aprenda muito!',
+        'espero que possamos te ajudar!',
+        'sinta-se em casa!',
+    ]
+
     if guild.system_channel is not None:
         embed = discord.Embed(
             title='Bem vindo ao servidor!',
-            description=f'Seja bem vindo {member.mention}, espero que você se divirta!',
+            description=f'Seja bem vindo(a) {member.mention}, {greetings[randint(0, 3)]}',
             color=COLOR_YELLOW,
         )
         await guild.system_channel.send(embed=embed)
