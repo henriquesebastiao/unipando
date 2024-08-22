@@ -4,6 +4,7 @@
 
 
 [![CI](https://github.com/henriquesebastiao/unipando/actions/workflows/ci.yml/badge.svg)](https://github.com/henriquesebastiao/unipando/actions/workflows/ci.yml)
+[![status](https://uptime.henriquesebastiao.com/api/badge/12/status)]()
 
 Unipando é um bot para o Discord para auxiliar estudantes do curso de Ciência da Computação da UNIP.
 
