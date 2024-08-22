@@ -1,4 +1,4 @@
-from datetime import date, datetime, timedelta
+from datetime import datetime, timedelta
 
 import discord
 import pytz
@@ -25,16 +25,6 @@ async def create_class_events(bot: commands.Bot):
         #     'materia': 'Sistemas Operacionais Und.3',
         #     'date': date(2024, 5, 13),
         #     'description': 'Operação de Sistemas Operacionais.',
-        # },
-        # {
-        #     'materia': 'Teoria dos Grafos Und.1',
-        #     'date': date(2024, 5, 20),
-        #     'description': 'Grafos em árvores, Caminho de Euler, caminho de Hamilton e Algoritmo de percurso.',
-        # },
-        # {
-        #     'materia': 'Teoria dos Grafos Und.2',
-        #     'date': date(2024, 5, 27),
-        #     'description': 'Árvore mínima, Caminhos mínimos, Problema das quatro cores e Fluxos em Grafos.',
         # },
     ]
 
@@ -73,39 +63,10 @@ async def stick_notes(bot: commands.Bot):
     channel_message = guild.get_channel(CHANNEL_STICK_NOTES_ID)
 
     dates = [
-        {
-            'message': 'Hoje é a data limite para postagem das atividades complementares.',
-            'date': date(2024, 5, 13),
-        },
-        {
-            'message': 'Hoje se inicia a semana de provas e vai até dia 8. Boa sorte 😄.',
-            'date': date(2024, 6, 3),
-        },
-        {
-            'message': 'Hoje é o último dia para a realização das provas!',
-            'date': date(2024, 6, 8),
-        },
-        {
-            'message': 'Hoje se inicia a semana de provas substitutivas e vai até dia 15. Boa sorte 🙂.',
-            'date': date(2024, 6, 10),
-        },
-        {
-            'message': 'Hoje é o último dia para a realização das provas substitutivas!',
-            'date': date(2024, 6, 15),
-        },
-        {
-            'message': 'Hoje se inicia a semana de provas de exame e vai até dia 22. '
-            'Boa sorte a todos, vocês vão precisar 😅',
-            'date': date(2024, 6, 17),
-        },
-        {
-            'message': 'Hoje é o último dia para a realização das provas de exame!',
-            'date': date(2024, 6, 22),
-        },
-        {
-            'message': 'Boas férias (curtas) a todos! 😄',
-            'date': date(2024, 6, 24),
-        },
+        # {
+        #     'message': 'Hoje é a data limite para postagem das atividades complementares.',
+        #     'date': date(2024, 5, 13),
+        # },
     ]
 
     for date_stick_note in dates:
