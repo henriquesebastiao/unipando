@@ -1,10 +1,10 @@
-<img src="img/logo-repository.png" width="100">
-
 # Unipando Bot
 
-
 [![CI](https://github.com/henriquesebastiao/unipando/actions/workflows/ci.yml/badge.svg)](https://github.com/henriquesebastiao/unipando/actions/workflows/ci.yml)
-[![status](https://uptime.henriquesebastiao.com/api/badge/12/status)]()
+[![Static Badge](https://img.shields.io/badge/status-stable-%232FBF50)](https://github.com/henriquesebastiao/unipando/)
+[![GitHub Release](https://img.shields.io/github/v/release/henriquesebastiao/unipando?color=blue)](https://github.com/henriquesebastiao/unipando/releases)
+[![GitHub License](https://img.shields.io/github/license/henriquesebastiao/unipando?color=blue)](https://github.com/henriquesebastiao/unipando/blob/main/LICENSE)
+[![Visitors](https://api.visitorbadge.io/api/visitors?path=henriquesebastiao%2Funipando&label=repository%20visits&countColor=%231182c3&style=flat)](https://github.com/henriquesebastiao/unipando)
 
 Unipando é um bot para o Discord para auxiliar estudantes do curso de Ciência da Computação da UNIP.
 
