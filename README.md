@@ -8,6 +8,11 @@
 
 Unipando é um bot para o Discord para auxiliar estudantes do curso de Ciência da Computação da UNIP.
 
+> [!NOTE]
+> Este bot foi desenvolvido para uso (e meu próprio aprendizado) enquanto eu e meus colegas  estávamos cursando Ciências da Computação pela UNIP, uma vez que o bot não está mais em uso, nem seu desenvolvimento está sendo continuado, este repositório passa a ser arquivado (2026-01-24).
+>
+> Para quaisquer dúvidas me contate pelo email [contato@henriquesebastiao.com](mailto:contato@henriquesebastiao.com).
+
 ## Como Usar
 
 Para adicionar o Unipando ao seu servidor no Discord, siga estas etapas:
